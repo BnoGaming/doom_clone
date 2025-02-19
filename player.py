@@ -7,11 +7,11 @@ class Player:
         self.game = game
         self.x, self.y = PLAYER_POS
         self.angle = PLAYER_ANGLE
-        self.shot = False
-        self.health = PLAYER_MAX_HEALTH
-        self.rel = 0
-        self.health_recovery_delay = 700
-        self.time_prev = pg.time.get_ticks()
+        # self.shot = False
+        # self.health = PLAYER_MAX_HEALTH
+        # self.rel = 0
+        # self.health_recovery_delay = 700
+        # self.time_prev = pg.time.get_ticks()
         # diagonal movement correction
         self.diag_move_corr = 1 / math.sqrt(2)
 
@@ -49,10 +49,10 @@ class Player:
 
         self.check_wall_collision(dx, dy)
 
-        # if keys[pg.K_LEFT]:
-        #     self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
-        # if keys[pg.K_RIGHT]:
-        #     self.angle += PLAYER_ROT_SPEED * self.game.delta_time
+        if keys[pg.K_LEFT]:
+            self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
+        if keys[pg.K_RIGHT]:
+            self.angle += PLAYER_ROT_SPEED * self.game.delta_time
         self.angle %= math.tau
 
     def check_wall(self, x, y):
@@ -66,9 +66,9 @@ class Player:
             self.y += dy
     
     def draw(self):
-        pg.draw.line(self.game.screen, 'yellow', (self.x * 100, self.y * 100),
-                    (self.x * 100 + WIDTH * math.cos(self.angle),
-                     self.y * 100 + WIDTH * math. sin(self.angle)), 2)
+        # pg.draw.line(self.game.screen, 'yellow', (self.x * 100, self.y * 100),
+        #             (self.x * 100 + WIDTH * math.cos(self.angle),
+        #              self.y * 100 + WIDTH * math. sin(self.angle)), 2)
         pg.draw.circle(self.game.screen, 'green', (self.x * 100, self.y * 100), 15)
 
     def update(self):
