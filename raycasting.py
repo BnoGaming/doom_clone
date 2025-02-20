@@ -32,7 +32,7 @@ class RayCasting:
             for i in range(MAX_DEPTH):
                 tile_hor = int(x_hor), int(y_hor)
                 if tile_hor in self.game.map.world_map:
-                    # texture_hor = self.game.map.world_map[tile_hor]
+                    texture_hor = self.game.map.world_map[tile_hor]
                     break
                 x_hor += dx
                 y_hor += dy
@@ -50,7 +50,7 @@ class RayCasting:
             for i in range(MAX_DEPTH):
                 tile_vert = int(x_vert), int(y_vert)
                 if tile_vert in self.game.map.world_map:
-                    # texture_vert = self.game.map.world_map[tile_vert]
+                    texture_vert = self.game.map.world_map[tile_vert]
                     break
                 x_vert += dx
                 y_vert += dy
@@ -67,8 +67,8 @@ class RayCasting:
 
             proj_height = SCREEN_DIST / (depth + 0.0001)
 
-            color = [255 / (1 + depth * 5 * 0.00002)] * 3
-            pg.draw.rect(self.game.screen, 'white', 
+            color = [255 / (1 + depth ** 5 * 0.00002)] * 3
+            pg.draw.rect(self.game.screen, color, 
                          (ray * SCALE, HALF_HEIGHT - proj_height // 2, SCALE, proj_height))
 
             # for debug
